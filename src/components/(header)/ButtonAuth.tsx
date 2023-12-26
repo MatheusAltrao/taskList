@@ -1,5 +1,8 @@
+'use client';
 import Link from 'next/link';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { X } from 'lucide-react';
+import Spinner from '../(spinner)/Spinner';
 
 const ButtonAuth = () => {
     const { data, status } = useSession();
@@ -8,17 +11,19 @@ const ButtonAuth = () => {
         <div className='flex items-center gap-2'>
             {status == 'authenticated' && (
                 <Link
-                    href='/Dashboard'
-                    className='px-6 text-sm  py-2 btn-primary'
+                    href='/dashboard'
+                    className='px-2 text-xs md:text-sm  py-2 btn-primary'
                 >
                     Meu Painel
                 </Link>
             )}
 
+            {status == 'loading' && <Spinner />}
+
             {status === 'unauthenticated' && (
                 <button
                     onClick={() => signIn('google')}
-                    className='px-6 text-sm  py-2 btn-primary'
+                    className='px-2  text-xs md:text-sm  py-2 btn-primary'
                 >
                     Entrar
                 </button>
@@ -27,18 +32,11 @@ const ButtonAuth = () => {
             {status == 'authenticated' && (
                 <button
                     onClick={() => signOut()}
-                    className='px-6  text-sm py-2 btn-primary'
+                    className='px-2  text-xs md:text-sm  py-2 btn-primary flex items-center  gap-2'
                 >
-                    Sair
+                    <p className='text-xs md:text-sm '> {data?.user?.name}</p>
+                    <X size={16} className='text-zinc-400' />
                 </button>
-            )}
-
-            {status == 'authenticated' && (
-                <>
-                    <div className='h-10 mx-4 w-px bg-zinc-600' />
-
-                    <p className='text-sm'> {data?.user?.name}</p>
-                </>
             )}
         </div>
     );
