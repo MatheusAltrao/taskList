@@ -1,6 +1,8 @@
 import Alert from '@/components/(dialog)/Alert';
+import { Tooltip } from '@material-tailwind/react';
 import { Eye, Forward } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface TaskProps {
     taskId: string;
@@ -17,12 +19,23 @@ const Task = ({
     handleShareTask,
     handleDeleteTask,
 }: TaskProps) => {
-    const onShare = (taskId: string) => {
-        handleShareTask(taskId);
-    };
-
     const onDelete = (taskId: string) => {
         handleDeleteTask(taskId);
+    };
+
+    const onShareTask = () => {
+        handleShareTask(taskId);
+        handleCopiedLink();
+    };
+
+    const [isCopied, setCopied] = useState(false);
+
+    const handleCopiedLink = () => {
+        setCopied(false);
+
+        setTimeout(() => {
+            setCopied(true);
+        }, 3000);
     };
 
     return (
@@ -50,6 +63,40 @@ const Task = ({
                     >
                         <Eye size={16} />
                     </Link>
+
+                    {isPublic && (
+                        <div>
+                            <button
+                                onClick={onShareTask}
+                                className='btn-primary h-6 hover:text-blue-300 px-1 flex items-center justify-center'
+                            >
+                                <Tooltip
+                                    content={
+                                        <div
+                                            className={`${
+                                                isCopied
+                                                    ? 'bg-zinc-900'
+                                                    : ' bg-blue-600'
+                                            } rounded-lg p-2 transition-colors`}
+                                        >
+                                            <p>
+                                                {isCopied
+                                                    ? 'Copiar'
+                                                    : 'Copiado!'}
+                                            </p>
+                                        </div>
+                                    }
+                                    placement='top'
+                                    animate={{
+                                        mount: { scale: 1, y: 0 },
+                                        unmount: { scale: 0, y: 25 },
+                                    }}
+                                >
+                                    <Forward size={16} />
+                                </Tooltip>
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 <div className='flex items-center justify-between gap-4'>
@@ -57,7 +104,7 @@ const Task = ({
                 </div>
             </div>
 
-            <Alert taskId={taskId} handleDeleteTask={onDelete} />
+            <Alert id={taskId} handleDelete={onDelete} />
         </div>
     );
 };

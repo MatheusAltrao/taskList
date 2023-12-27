@@ -12,7 +12,7 @@ const Icon = () => {
                         <p>
                             Clique no olho da Task e você será levado a uma
                             visualização mais detalhada, proporcionando
-                            informações adicionais sobre a task.
+                            informações adicionais sobre a task
                         </p>
                     </div>
                 }
