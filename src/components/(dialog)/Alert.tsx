@@ -3,11 +3,11 @@ import { Dialog } from 'primereact/dialog';
 import { ReactNode, useState } from 'react';
 
 interface AlertProps {
-    taskId: string;
-    handleDeleteTask: (taskId: string) => void;
+    id: string;
+    handleDelete: (taskId: string) => void;
 }
 
-const Alert = ({ taskId, handleDeleteTask }: AlertProps) => {
+const Alert = ({ id, handleDelete }: AlertProps) => {
     const [visible, setVisible] = useState(false);
 
     const footerContent = (
@@ -20,7 +20,7 @@ const Alert = ({ taskId, handleDeleteTask }: AlertProps) => {
             </button>
             <button
                 className='btn-primary h-10 w-28'
-                onClick={() => handleDeleteTask(taskId)}
+                onClick={() => handleDelete(id)}
             >
                 Apagar
             </button>
