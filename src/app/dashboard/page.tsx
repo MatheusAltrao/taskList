@@ -5,7 +5,7 @@ import Textarea from './components/(form)/Textarea';
 import Task from './components/(task)/Task';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { db } from '@/services/firebaseConnection';
-
+import { useRouter } from 'next/router';
 import {
     addDoc,
     collection,
@@ -17,7 +17,7 @@ import {
     deleteDoc,
 } from 'firebase/firestore';
 import { format } from 'date-fns';
-import Icon from './components/(icon)/Icon';
+import Icon from './components/(Icon)/Icon';
 import Toast from '@/components/(toast)/Toast';
 
 type TasksType = {
@@ -93,6 +93,8 @@ export default function Dashboard() {
         await navigator.clipboard.writeText(
             `${process.env.NEXT_PUBLIC_URL}/task/${taskId}`,
         );
+
+        console.log(taskId);
     };
 
     const handleDeleteTask = async (taskId: string) => {
@@ -130,14 +132,14 @@ export default function Dashboard() {
                             type='checkbox'
                             className='rounded text-sm bg-transparent border border-zinc-400  focus:ring-0  focus:ring-offset-0 '
                         />
-                        <p className='text-zinc-300'>Deixar task publica?</p>
+                        <p className='text-zinc-300'>Deixar task pública?</p>
                     </div>
 
                     <button
                         type='submit'
-                        className='btn-primary w-full py-3 mt-8 '
+                        className='btn-primary w-full py-3 mt-8   '
                     >
-                        Registar
+                        Registrar
                     </button>
                 </form>
 
@@ -159,7 +161,7 @@ export default function Dashboard() {
                         ))}
 
                         {tasks.length == 0 && (
-                            <p className='text-zinc-600 '>
+                            <p className='text-zinc-600 text-sm '>
                                 Nenhuma tarefa encontrada.
                             </p>
                         )}
