@@ -42,14 +42,13 @@ interface CommentProps {
     taskId: string;
 }
 
-export default function TaskList({ params }: Params) {
+export default function TaskList({ params }: { params: { id: string } }) {
     const [task, setTask] = useState<TaskProps>();
     const [comment, setComment] = useState('');
     const [allComments, setAllComments] = useState<CommentProps[]>([]);
     const [showToast, setShowToast] = useState(false);
     const { data } = useSession();
     const ulrId = params?.id;
-    const [isPrivate, setIsPrivate] = useState(false);
 
     const router = useRouter();
 
