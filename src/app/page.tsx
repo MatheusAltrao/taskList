@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import HeroImage from '../assets/heroImage.svg';
 
+import Counting from '@/components/(couting)/Counting';
+
 export default function Home() {
     return (
         <div className=' mt-32 w-full max-w-[900px] mx-auto flex items-center justify-center flex-col gap-8 '>
@@ -21,14 +23,7 @@ export default function Home() {
                 </h1>
             </div>
 
-            <div className='flex items-center flex-col sm:flex-row justify-center gap-2'>
-                <div className='card text-center py-2 w-[180px] text-sm'>
-                    + 7mil posts
-                </div>
-                <div className='card text-center py-2 w-[180px] text-sm'>
-                    + 2 mil comentários
-                </div>
-            </div>
+            <Counting />
         </div>
     );
 }
