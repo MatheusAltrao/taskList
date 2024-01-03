@@ -31,10 +31,10 @@ const Task = ({
     const [isCopied, setCopied] = useState(false);
 
     const handleCopiedLink = () => {
-        setCopied(false);
+        setCopied(true);
 
         setTimeout(() => {
-            setCopied(true);
+            setCopied(false);
         }, 3000);
     };
 
@@ -75,14 +75,14 @@ const Task = ({
                                         <div
                                             className={`${
                                                 isCopied
-                                                    ? 'bg-zinc-900'
-                                                    : ' bg-blue-600'
+                                                    ? ' bg-blue-600'
+                                                    : ' bg-zinc-900'
                                             } rounded-lg p-2 transition-colors`}
                                         >
                                             <p>
                                                 {isCopied
-                                                    ? 'Copiar'
-                                                    : 'Copiado!'}
+                                                    ? 'Copiado!'
+                                                    : 'Copiar'}
                                             </p>
                                         </div>
                                     }
