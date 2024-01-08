@@ -222,7 +222,7 @@ export default function TaskList({ params }: { params: { id: string } }) {
                         <button
                             disabled={!data?.user}
                             type='submit'
-                            className='btn-primary w-full py-3 mt-8 disabled:opacity-50 cursor-not-allowed'
+                            className='btn-primary w-full py-3 mt-8 disabled:opacity-50 disabled:cursor-not-allowed'
                         >
                             Comentar
                         </button>

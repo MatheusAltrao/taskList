@@ -5,7 +5,6 @@ import Textarea from './components/(form)/Textarea';
 import Task from './components/(task)/Task';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { db } from '@/services/firebaseConnection';
-import { useRouter } from 'next/router';
 import {
     addDoc,
     collection,
